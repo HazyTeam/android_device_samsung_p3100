@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-# Inherit Omni GSM telephony parts
-$(call inherit-product, vendor/omni/config/gsm.mk)
+# Inherit GSM telephony parts
+$(call inherit-product, vendor/twixkat/configs/gsm.mk)
 
-# Inherit common Omni configurations
-$(call inherit-product, vendor/omni/config/common_tablet.mk)
+# Inherit common configurations
+$(call inherit-product, vendor/twixkat/configs/common_tablet.mk)
 
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
@@ -27,10 +27,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit device specific configurations
 $(call inherit-product, device/samsung/p3100/device.mk)
 
+# Inherit from our Hazy vendor product
+$(call inherit-product, vendor/twixkat/device-partial.mk)
+
 # Device identifier. This must come after all inclusions
 PRODUCT_MODEL := GT-P3100
 PRODUCT_BRAND := samsung
-PRODUCT_NAME := omni_p3100
+PRODUCT_NAME := hazy_p3100
 PRODUCT_DEVICE := p3100
 PRODUCT_MANUFACTURER := samsung
 

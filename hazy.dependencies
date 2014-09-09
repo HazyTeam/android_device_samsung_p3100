@@ -12,15 +12,21 @@
     "revision": "android-4.4"
   },
   {
-    "remote": "omnirom",
-    "repository": "android_kernel_samsung_espresso10",
+    "remote": "github",
+    "repository": "HazyTeam/android_kernel_samsung_espresso10",
     "target_path": "kernel/samsung/espresso10",
-    "revision": "android-4.4"
+    "revision": "kitkat"
   },
   {
     "remote": "omnirom",
     "repository": "android_packages_apps_SamsungServiceMode",
     "target_path": "packages/apps/SamsungServiceMode",
-    "revision": "android-4.4"
+    "revision": "kitkat"
+  },
+  {
+    "remote": "github",
+    "repository": "HazyTeam/proprietary_vendor_samsung",
+    "target_path": "vendor/samsung",
+    "revision": "kitkat"
   }
 ]
