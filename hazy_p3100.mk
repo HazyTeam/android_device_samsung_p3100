@@ -16,10 +16,10 @@
 #
 
 # Inherit GSM telephony parts
-$(call inherit-product, vendor/twixkat/configs/gsm.mk)
+$(call inherit-product, vendor/hazy/configs/gsm.mk)
 
 # Inherit common configurations
-$(call inherit-product, vendor/twixkat/configs/common_tablet.mk)
+$(call inherit-product, vendor/hazy/configs/common_tablet.mk)
 
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
@@ -28,7 +28,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/samsung/p3100/device.mk)
 
 # Inherit from our Hazy vendor product
-$(call inherit-product, vendor/twixkat/device-partial.mk)
+$(call inherit-product, vendor/hazy/device-partial.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_MODEL := GT-P3100
