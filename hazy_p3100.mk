@@ -1,6 +1,6 @@
 #
-# Copyright (C) 2013 OmniROM Project
 # Copyright (C) 2012 The CyanogenMod Project
+# Copyright (C) 2014 SlimRoms Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,31 +15,33 @@
 # limitations under the License.
 #
 
-# Inherit GSM telephony parts
+## Specify phone tech before including full_phone
 $(call inherit-product, vendor/hazy/configs/gsm.mk)
 
-# Inherit common configurations
-$(call inherit-product, vendor/hazy/configs/common_tablet.mk)
+# Release name
+PRODUCT_RELEASE_NAME := p3100
 
-# Inherit from the common Open Source product configuration
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+# Boot animation
+# TARGET_SCREEN_HEIGHT := 1024
+TARGET_SCREEN_HEIGHT := 480
+TARGET_SCREEN_WIDTH := 600
 
-# Inherit device specific configurations
-$(call inherit-product, device/samsung/p3100/device.mk)
+# Inherit some common Slim stuff.
+$(call inherit-product, vendor/hazy/configs/common.mk)
 
-# Inherit from our Hazy vendor product
-$(call inherit-product, vendor/hazy/device-partial.mk)
+# Inherit device configuration
+$(call inherit-product, device/samsung/p3100/full_p3100.mk)
 
-# Device identifier. This must come after all inclusions
-PRODUCT_MODEL := GT-P3100
-PRODUCT_BRAND := samsung
-PRODUCT_NAME := hazy_p3100
+## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := p3100
+PRODUCT_NAME := hazy_p3100
+PRODUCT_BRAND := samsung
+PRODUCT_MODEL := GT-P3100
 PRODUCT_MANUFACTURER := samsung
 
 #Set build fingerprint / ID / Prduct Name ect.
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME=espressorfxx \
     TARGET_DEVICE=espressorf \
-    PRIVATE_BUILD_DESC="espressorfxx-user 4.2.2 JDQ39 P3100XWDNA1 release-keys" \
-    BUILD_FINGERPRINT="samsung/espressorfxx/espressorf:4.2.2/JDQ39/P3100XWDNA1:user/release-keys"
+    BUILD_FINGERPRINT="samsung/espressorfxx/espressorf:4.2.2/JDQ39/P3100XWDNA1:user/release-keys" \
+    PRIVATE_BUILD_DESC="espressorfxx-user 4.2.2 JDQ39 P3100XWDNA1 release-keys"

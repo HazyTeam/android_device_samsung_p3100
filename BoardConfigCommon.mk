@@ -1,5 +1,4 @@
 #
-# Copyright (C) 2013 OmniROM Project
 # Copyright (C) 2012 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,13 +17,26 @@
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
 
+TARGET_USE_KERNEL_PVR := true
+TARGET_OMAP4430_CPU_OVERCLOCK := true
+
 -include device/samsung/omap4-common/BoardConfigCommon.mk
 
 USE_CAMERA_STUB := true
 
+TARGET_ARCH := arm
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_SMP := true
+TARGET_ARCH_VARIANT := armv7-a-neon
+ARCH_ARM_HAVE_TLS_REGISTER := true
+TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
+
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
+TARGET_BOARD_PLATFORM := omap4
 TARGET_BOARD_OMAP_CPU := 4430
 TARGET_BOOTLOADER_BOARD_NAME := piranha
 
@@ -32,17 +44,7 @@ BOARD_NAND_PAGE_SIZE := 4096
 BOARD_NAND_SPARE_SIZE := 128
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_BASE := 0x40000000
-BOARD_KERNEL_CMDLINE :=
-
-# External SGX Module
-SGX_MODULES:
-	make clean -C $(COMMON_PATH)/pvr-source/eurasiacon/build/linux2/omap4430_android
-	cp $(TARGET_KERNEL_SOURCE)/drivers/video/omap2/omapfb/omapfb.h $(KERNEL_OUT)/drivers/video/omap2/omapfb/omapfb.h
-	make -j8 -C $(COMMON_PATH)/pvr-source/eurasiacon/build/linux2/omap4430_android ARCH=arm KERNEL_CROSS_COMPILE=arm-eabi- CROSS_COMPILE=arm-eabi- KERNELDIR=$(KERNEL_OUT) TARGET_PRODUCT="blaze_tablet" BUILD=release TARGET_SGX=540 PLATFORM_VERSION=4.0
-	mv $(KERNEL_OUT)/../../target/kbuild/pvrsrvkm_sgx540_120.ko $(KERNEL_MODULES_OUT)
-	$(ARM_EABI_TOOLCHAIN)/arm-eabi-strip --strip-unneeded $(KERNEL_MODULES_OUT)/pvrsrvkm_sgx540_120.ko
-
-TARGET_KERNEL_MODULES += SGX_MODULES
+# BOARD_KERNEL_CMDLINE :=
 
 # Init
 TARGET_PROVIDES_INIT := true
@@ -58,17 +60,7 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # Egl
 BOARD_EGL_CFG := device/samsung/p3100/configs/egl.cfg
 USE_OPENGL_RENDERER := true
-
-# Boot Animation
 TARGET_BOOTANIMATION_PRELOAD := true
-TARGET_BOOTANIMATION_USE_RGB565 := true
-
-# Camera
-COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
-
-# RIL
-BOARD_PROVIDES_LIBRIL := true
-BOARD_MODEM_TYPE := xmm6260
 
 # Vold
 BOARD_VOLD_MAX_PARTITIONS := 12
@@ -102,9 +94,6 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/p3100/bluetooth
 BOARD_BLUEDROID_VENDOR_CONF := device/samsung/p3100/bluetooth/vnd_espresso.txt
 
-# Screenrecord
-BOARD_SCREENRECORD_DEVICE_FORCE_AUDIO_MIC := true
-
 # Sensors
 BOARD_USE_LEGACY_SENSORS_FUSION := false
 
@@ -112,16 +101,21 @@ BOARD_USE_LEGACY_SENSORS_FUSION := false
 BOARD_USES_SECURE_SERVICES := true
 
 # Selinux
-BOARD_SEPOLICY_DIRS += \
+BOARD_SEPOLICY_DIRS := \
     device/samsung/p3100/selinux
 
-BOARD_SEPOLICY_UNION += \
+BOARD_SEPOLICY_UNION := \
     file_contexts \
     file.te \
     device.te \
+    dock_kbd_attach.te \
     domain.te \
+    geomagneticd.te \
+    init.te \
+    orientationd.te \
     pvrsrvinit.te \
     rild.te \
+    smc_pa.te \
     wpa_supplicant.te
 
 # Recovery
@@ -130,6 +124,7 @@ BOARD_UMS_LUNFILE := "/sys/class/android_usb/f_mass_storage/lun0/file"
 BOARD_USES_MMCUTILS := true
 BOARD_HAS_NO_MISC_PARTITION := true
 BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_SUPPRESS_EMMC_WIPE := true
 TARGET_RECOVERY_FSTAB := device/samsung/p3100/rootdir/fstab.espresso
 RECOVERY_FSTAB_VERSION := 2
 
@@ -148,8 +143,9 @@ TW_FLASH_FROM_STORAGE := true
 TW_INCLUDE_JB_CRYPTO := true
 TW_MAX_BRIGHTNESS := 255
 
-# Charging mode
-BOARD_CHARGER_RES := device/samsung/p3100/res/charger
-
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/p31xx/BoardConfigVendor.mk
+
+# Bootanimation
+TARGET_SCREEN_HEIGHT := 1024
+TARGET_SCREEN_WIDTH := 600

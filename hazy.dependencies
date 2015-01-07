@@ -1,32 +1,27 @@
 [
-  {
-    "remote": "github",
-    "repository": "HazyTeam/android_device_samsung_omap4-common",
-    "target_path": "device/samsung/omap4-common",
-    "revision": "hazypop"
-  },
-  {
-    "remote": "github",
-    "repository": "HazyTeam/android_hardware_samsung",
-    "target_path": "hardware/samsung",
-    "revision": "hazypop"
-  },
-  {
-    "remote": "github",
-    "repository": "HazyTeam/android_kernel_samsung_espresso10",
-    "target_path": "kernel/samsung/espresso10",
-    "revision": "hazypop"
-  },
-  {
-    "remote": "github",
-    "repository": "HazyTeam/android_packages_apps_SamsungServiceMode",
-    "target_path": "packages/apps/SamsungServiceMode",
-    "revision": "hazypop"
-  },
-  {
-    "remote": "github",
-    "repository": "HazyTeam/proprietary_vendor_samsung",
-    "target_path": "vendor/samsung",
-    "revision": "hazypop"
-  }
+    {
+        "repository": "SlimRoms/device_samsung_omap4-common",
+        "target_path": "device/samsung/omap4-common",
+        "branch": "lp5.0"
+    },
+    {
+        "repository": "SlimRoms/kernel_samsung_espresso10",
+        "target_path": "kernel/samsung/espresso10",
+        "branch": "lp5.0"
+    },
+    {
+        "repository": "SlimRoms/device_samsung_p3110",
+        "target_path": "device/samsung/p3110",
+        "branch": "lp5.0"
+    },
+    {
+        "repository": "SlimRoms/hardware_samsung",
+        "target_path": "hardware/samsung",
+        "branch": "lp5.0"
+    },
+    {
+	"repository": "TheMuppets/proprietary_vendor_samsung",
+	"target_path": "vendor/samsung",
+	"branch": "cm-12.0"
+    }
 ]

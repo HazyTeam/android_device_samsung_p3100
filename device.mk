@@ -1,5 +1,4 @@
 #
-# Copyright (C) 2013 OmniROM Project
 # Copyright (C) 2012 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +18,6 @@ $(call inherit-product, device/samsung/p3100/p31xx-common.mk)
 
 LOCAL_PATH := device/samsung/p3100
 
-# Overlay 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Audio
