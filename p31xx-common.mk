@@ -1,6 +1,5 @@
 #
 # Copyright (C) 2012 The CyanogenMod Project
-# Copyright (C) 2014 SlimRoms Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -37,9 +36,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/init.espresso.usb.rc:root/init.espresso.usb.rc \
     $(LOCAL_PATH)/rootdir/init.espresso.rc:root/init.espresso.rc \
     $(LOCAL_PATH)/rootdir/ueventd.espresso.rc:root/ueventd.espresso.rc \
-    $(LOCAL_PATH)/rootdir/fstab.espresso:root/fstab.espresso \
-    $(LOCAL_PATH)/rootdir/twrp.fstab:recovery/root/etc/twrp.fstab \
-    $(LOCAL_PATH)/rootdir/init.recovery.espresso.rc:/root/init.recovery.espresso.rc
+    $(LOCAL_PATH)/rootdir/fstab.espresso:root/fstab.espresso
 
 # GPS
 PRODUCT_COPY_FILES += \
@@ -63,7 +60,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml
 
 # Keylayout
 PRODUCT_COPY_FILES += \
@@ -72,16 +70,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/usr/keylayout/espresso-gpio-keypad.kl:system/usr/keylayout/espresso-gpio-keypad.kl \
     $(LOCAL_PATH)/usr/keylayout/sec_keyboard.kl:system/usr/keylayout/sec_keyboard.kl
 
-# init.d script to load the keyboard dock driver
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init.d/01KeyboardDock:system/etc/init.d/01KeyboardDock
-
 # Packages
 PRODUCT_PACKAGES += \
     audio.primary.piranha \
     audio.r_submix.default \
     camera.piranha \
-    GalaxyTab2Settings \
     hwcomposer.piranha \
     lights.piranha \
     libinvensense_mpl \

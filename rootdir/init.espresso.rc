@@ -71,6 +71,9 @@ on fs
     restorecon /efs/imei/mps_code.dat
     restorecon /efs/wifi/.mac.info
 
+# pvr module
+    insmod /system/lib/modules/pvrsrvkm_sgx540_120.ko
+
 on post-fs-data
     # we will remap this as /storage/sdcard0 with the sdcard fuse tool
     mkdir /data/media 0770 media_rw media_rw
@@ -95,7 +98,7 @@ on post-fs-data
     write /sys/devices/system/cpu/cpu0/cpufreq/screen_off_max_freq 800000
     chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/screen_off_max_freq
 
-# DVFS Lock
+#DVFS Lock
     chown radio system /sys/power/cpufreq_min_limit
     chown radio system /sys/power/cpufreq_max_limit
     chown radio system /sys/power/cpufreq_table
@@ -249,7 +252,7 @@ on post-fs-data
     mkdir /data/gps 771 system system
     chown system system /data/gps
 
-# Change permission for backlight and lcd
+#Change permission for backlight and lcd
     chown system system /sys/class/backlight/panel/brightness
     chown system radio /sys/class/lcd/panel/lcd_type
     chown system radio /sys/class/lcd/panel/lcd_power

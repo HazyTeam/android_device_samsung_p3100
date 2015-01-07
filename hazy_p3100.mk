@@ -1,6 +1,5 @@
 #
 # Copyright (C) 2012 The CyanogenMod Project
-# Copyright (C) 2014 SlimRoms Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +14,6 @@
 # limitations under the License.
 #
 
-## Specify phone tech before including full_phone
-$(call inherit-product, vendor/hazy/configs/gsm.mk)
-
 # Release name
 PRODUCT_RELEASE_NAME := p3100
 
@@ -26,7 +22,7 @@ PRODUCT_RELEASE_NAME := p3100
 TARGET_SCREEN_HEIGHT := 480
 TARGET_SCREEN_WIDTH := 600
 
-# Inherit some common Slim stuff.
+# Inherit some common CM stuff.
 $(call inherit-product, vendor/hazy/configs/common.mk)
 
 # Inherit device configuration

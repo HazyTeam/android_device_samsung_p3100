@@ -17,26 +17,13 @@
 # This variable is set first, so it can be overridden
 # by BoardConfigVendor.mk
 
-TARGET_USE_KERNEL_PVR := true
-TARGET_OMAP4430_CPU_OVERCLOCK := true
-
 -include device/samsung/omap4-common/BoardConfigCommon.mk
 
 USE_CAMERA_STUB := true
 
-TARGET_ARCH := arm
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_SMP := true
-TARGET_ARCH_VARIANT := armv7-a-neon
-ARCH_ARM_HAVE_TLS_REGISTER := true
-TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=softfp
-
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
-TARGET_BOARD_PLATFORM := omap4
 TARGET_BOARD_OMAP_CPU := 4430
 TARGET_BOOTLOADER_BOARD_NAME := piranha
 
@@ -60,7 +47,10 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # Egl
 BOARD_EGL_CFG := device/samsung/p3100/configs/egl.cfg
 USE_OPENGL_RENDERER := true
+
+# Boot Animation
 TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_USE_RGB565 := true
 
 # Vold
 BOARD_VOLD_MAX_PARTITIONS := 12
@@ -101,10 +91,10 @@ BOARD_USE_LEGACY_SENSORS_FUSION := false
 BOARD_USES_SECURE_SERVICES := true
 
 # Selinux
-BOARD_SEPOLICY_DIRS := \
+BOARD_SEPOLICY_DIRS += \
     device/samsung/p3100/selinux
 
-BOARD_SEPOLICY_UNION := \
+BOARD_SEPOLICY_UNION += \
     file_contexts \
     file.te \
     device.te \
@@ -128,24 +118,8 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 TARGET_RECOVERY_FSTAB := device/samsung/p3100/rootdir/fstab.espresso
 RECOVERY_FSTAB_VERSION := 2
 
-# TWRP
-DEVICE_RESOLUTION := 1024x600
-HAVE_SELINUX := true
-RECOVERY_SDCARD_ON_DATA := true
-BOARD_HAS_NO_REAL_SDCARD := true
-TW_INTERNAL_STORAGE_PATH := "/data/media"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-TW_EXTERNAL_STORAGE_PATH := "/external_sd"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
-TW_NO_REBOOT_BOOTLOADER := true
-TW_HAS_DOWNLOAD_MODE := true
-TW_FLASH_FROM_STORAGE := true
-TW_INCLUDE_JB_CRYPTO := true
-TW_MAX_BRIGHTNESS := 255
+# build swipe recovery by default
+BOARD_RECOVERY_SWIPE := true
 
 # Use the non-open-source parts, if they're present
 -include vendor/samsung/p31xx/BoardConfigVendor.mk
-
-# Bootanimation
-TARGET_SCREEN_HEIGHT := 1024
-TARGET_SCREEN_WIDTH := 600
